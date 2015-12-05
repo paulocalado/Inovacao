@@ -1,6 +1,8 @@
 package com.example.paulo.inovacao;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,12 +15,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CalendarView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Calendar;
+import java.util.Date;
+
+import static android.widget.Toast.*;
 
 public class MainDiarista extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     TextView textNomeDiarista;
+    CalendarView calendar;
+    Date date;
+   /* int year = data.getIntExtra("year", 0);   // get number of year
+    int month = data.getIntExtra("month", 0); // get number of month 0..11
+    int day = c*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +68,8 @@ public class MainDiarista extends AppCompatActivity
                 textNomeDiarista.setText(params.getString("editLoginCadastro"));
             }
         }
+
+        utilizaCalendario();
     }
 
     @Override
@@ -111,5 +127,27 @@ public class MainDiarista extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public void utilizaCalendario(){
+
+        calendar = (CalendarView) findViewById(R.id.calendarioDiarista);
+        calendar.setShowWeekNumber(false);
+
+       calendar.setDate(calendar.getDate());
+
+
+        calendar.setFirstDayOfWeek(2);
+
+
+
+        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+
+                Toast.makeText(MainDiarista.this, "testando" + dayOfMonth + "testando", LENGTH_LONG).show();
+            }
+        });
     }
 }

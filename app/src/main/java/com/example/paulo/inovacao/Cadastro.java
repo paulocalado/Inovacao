@@ -15,7 +15,7 @@ import android.widget.RadioGroup;
 
 public class Cadastro extends AppCompatActivity {
 
-    Button btEntrarCadastro;
+    Button btEntrarCadastro, btCriarConta;
     EditText editLoginCadastro, editSenhaCadastro;
     RadioGroup radioGroupCadastro;
     Bundle params;
@@ -32,6 +32,7 @@ public class Cadastro extends AppCompatActivity {
         editSenhaCadastro = (EditText)findViewById(R.id.editSenhaCadastro);
         btEntrarCadastro = (Button)findViewById(R.id.btEntrarCadastro);
         radioGroupCadastro = (RadioGroup)findViewById(R.id.radioGroupCadastro);
+        btCriarConta = (Button)findViewById(R.id.btCriarConta);
 
         btEntrarCadastro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,12 +58,15 @@ public class Cadastro extends AppCompatActivity {
             }
         });
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        btCriarConta.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v) {
+                int aux2 = radioGroupCadastro.getCheckedRadioButtonId();
+
+                if(aux2==R.id.radioButtonDiaristaCadastro){
+                    Intent intentCadastroDiarista = new Intent(Cadastro.this, CriarConta.class);
+                    startActivity(intentCadastroDiarista);
+                }
             }
         });
     }
