@@ -62,5 +62,16 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextRegiaoCriarConta"
+        android:layout_below="@+id/editTextSenhaCriarConta"
+        android:layout_alignRight="@+id/btNovaConta"
+        android:layout_alignEnd="@+id/btNovaConta"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:hint="Região"/>
+
 
 </RelativeLayout>

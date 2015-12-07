@@ -1,9 +1,8 @@
 package com.example.paulo.inovacao;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -12,6 +11,10 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.database.sqlite.*;
+import android.database.*;
+
+import com.example.paulo.inovacao.database.DataManager;
 
 public class Cadastro extends AppCompatActivity {
 
@@ -19,6 +22,8 @@ public class Cadastro extends AppCompatActivity {
     EditText editLoginCadastro, editSenhaCadastro;
     RadioGroup radioGroupCadastro;
     Bundle params;
+    private DataManager dataBase;
+    private SQLiteDatabase conn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,22 @@ public class Cadastro extends AppCompatActivity {
         btEntrarCadastro = (Button)findViewById(R.id.btEntrarCadastro);
         radioGroupCadastro = (RadioGroup)findViewById(R.id.radioGroupCadastro);
         btCriarConta = (Button)findViewById(R.id.btCriarConta);
+
+        try {
+            dataBase = new DataManager(this);
+            conn = dataBase.getWritableDatabase();
+
+            AlertDialog.Builder dlg = new AlertDialog.Builder(this);
+            dlg.setMessage("Conexão criada com sucesso");
+            dlg.setNeutralButton("OK", null);
+            dlg.show();
+
+        }catch (SQLException ex){
+            AlertDialog.Builder dlg = new AlertDialog.Builder(this);
+            dlg.setMessage("Erro ao criar o banco" + ex.getMessage());
+            dlg.setNeutralButton("OK", null);
+            dlg.show();
+        }
 
         btEntrarCadastro.setOnClickListener(new View.OnClickListener() {
             @Override

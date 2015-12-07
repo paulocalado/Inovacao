@@ -14,7 +14,7 @@ import android.widget.Toast;
 public class CriarConta extends AppCompatActivity {
 
     EditText editTextNomeCriarConta, editTextIdadeCriarConta,
-            editTextLoginCriarConta, editTextSenhaCriarConta;
+            editTextLoginCriarConta, editTextSenhaCriarConta, editTextRegiaoCriarConta;
 
     Button btNovaConta;
 
@@ -29,6 +29,7 @@ public class CriarConta extends AppCompatActivity {
         editTextLoginCriarConta = (EditText)findViewById(R.id.editTextLoginCriarConta);
         editTextNomeCriarConta  = (EditText)findViewById(R.id.editTextNomeCriarConta);
         editTextSenhaCriarConta = (EditText)findViewById(R.id.editTextSenhaCriarConta);
+        editTextRegiaoCriarConta = (EditText)findViewById(R.id.editTextRegiaoCriarConta);
         btNovaConta = (Button)findViewById(R.id.btNovaConta);
 
         btNovaConta.setOnClickListener(new View.OnClickListener() {
