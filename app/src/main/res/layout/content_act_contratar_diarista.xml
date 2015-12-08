@@ -7,43 +7,33 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/app_bar_main_contratante"
-    tools:context="com.example.paulo.inovacao.MainContratante">
+    tools:showIn="@layout/activity_act_contratar_diarista"
+    tools:context="com.example.paulo.inovacao.ActContratarDiarista">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Olá! "
-        android:id="@+id/txtViewOlaContratante"
+        android:text="Para quando deseja contratar "
+        android:id="@+id/txtSemUso"
         android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/txtViewNomeContratante"
-        android:layout_toStartOf="@+id/txtViewNomeContratante" />
+        android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Estas são as diaristas próximas a você"
-        android:id="@+id/textView3"
-        android:layout_below="@+id/txtViewOlaContratante"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+    <CalendarView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/calendarContratarDiarista"
+        android:layout_below="@+id/txtSemUso"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="99dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
-        android:id="@+id/txtViewNomeContratante"
-        android:layout_above="@+id/textView3"
-        android:layout_centerHorizontal="true" />
-
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/android:list"
-        android:layout_below="@+id/textView3"
+        android:id="@+id/txtContratarDiarista"
+        android:layout_below="@+id/txtSemUso"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

@@ -39,6 +39,11 @@
             android:label="@string/title_activity_criar_conta"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
+        <activity
+            android:name=".ActContratarDiarista"
+            android:label="@string/title_activity_act_contratar_diarista"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
     </application>
 
 </manifest>

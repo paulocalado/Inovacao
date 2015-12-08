@@ -20,6 +20,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,9 +34,10 @@ import java.util.ArrayList;
 public class MainContratante extends ListActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    TextView textNomeContratante;
+    TextView textNomeContratante, textViewTeste;
     ArrayList<Diarista> listaDiarista;
     ListaDiaristaAdapter diaristaAdapter;
+    Bundle params;
 
     private RepositorioDiarista repositorioDiarista;
     public DataManager dataBase;
@@ -84,14 +86,31 @@ public class MainContratante extends ListActivity
             dlg.show();
         }
 
-        repositorioDiarista = new RepositorioDiarista(conn);
-        repositorioDiarista.testeInserirDiarista();
+        params = new Bundle();
+        //repositorioDiarista = new RepositorioDiarista(conn);
+        //repositorioDiarista.testeInserirDiarista();
         listaDiarista = gerarDiarista();
         diaristaAdapter =  new ListaDiaristaAdapter(MainContratante.this, listaDiarista);
         setListAdapter(diaristaAdapter);
 
         textNomeContratante = (TextView)findViewById(R.id.txtViewNomeContratante);
         Intent intent = getIntent();
+
+        getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+                Diarista diarista = diaristaAdapter.getItem(position);
+
+                Intent intentContratarDiarista = new Intent(MainContratante.this, ActContratarDiarista.class);
+                params.putString("nomeDiarista", diarista.getNome());
+
+                intentContratarDiarista.putExtras(params);
+
+                startActivity(intentContratarDiarista);
+
+            }
+        });
 
         if(intent!=null){
             Bundle params = intent.getExtras();
@@ -203,17 +222,23 @@ public class MainContratante extends ListActivity
 
         cursor.moveToFirst();
 
-
-
+        int i = 115;
+        String aux;
         if(cursor.getCount() > 0){
 
 
-            do {
+            while(cursor.moveToNext()) {
+                i++;
                 String nome = cursor.getString(1);
                 String idade = cursor.getString(4);
 
-                listaDiarista.add(new Diarista(nome, "vic_bot", "R$100", "lava e passa", idade, R.drawable.victor, "piedade"));
-            }while(cursor.moveToNext());
+
+                    listaDiarista.add(new Diarista(nome, "vic_bot", "R$100", "lava e passa", idade, R.drawable.victor, "piedade"));
+
+
+            }
+
+
         }
 
        /*listaDiarista.add(new Diarista("Victor", "vic_bot", "R$100", "lava e passa", "22", R.drawable.victor));
